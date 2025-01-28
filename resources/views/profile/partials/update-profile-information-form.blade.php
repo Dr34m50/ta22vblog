@@ -9,7 +9,7 @@
         </p>
     </header>
 
-@@ -18,46 +18,49 @@
+@@ -18,47 +18,50 @@
         @method('patch')
 
         <div>
@@ -34,6 +34,7 @@
                 <div>
                     <p class="text-sm mt-2 text-gray-300">
                         Your email address is unverified.
+
                         <button form="send-verification"
                             class="underline text-sm text-gray-300 hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                             Click here to re-send the verification email.
@@ -58,3 +59,4 @@
             @endif
         </div>
     </form>
+</section>

@@ -9,7 +9,7 @@
         </p>
     </header>
 
-@@ -14,34 +14,38 @@
+@@ -14,35 +14,39 @@
         @method('put')
 
         <div>
@@ -48,3 +48,4 @@
             @endif
         </div>
     </form>
+</section>

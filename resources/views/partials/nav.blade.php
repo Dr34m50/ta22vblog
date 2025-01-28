@@ -57,3 +57,5 @@
         </ul>
         <form id="logout" action="{{route('logout')}}" method="POST">
             @csrf
+        </form>
+    </div>
