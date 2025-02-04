@@ -1,25 +1,26 @@
 @extends('partials.layout')
-@section('title', 'Edit Comment #'.$comment->id)
+@section('title', 'Edit Tag')
 @section('content')
     <div class="container mx-auto my-8">
         <a href="{{ url()->previous() }}" class="btn btn-primary mb-4">Back</a>
         <div class="card bg-base-300 shadow-xl w-1/2 mx-auto">
             <div class="card-body">
-                <form action="{{ route('comments.update', ['comment' => $comment]) }}" method="POST">
+                <h2 class="text-xl font-semibold mb-4">Edit Tag</h2>
+                <form action="{{ route('tags.update', $tag) }}" method="POST">
                     @csrf
                     @method('PUT')
-                    <label class="form-control w-full">
+                    <label class="form-control w-full mb-4">
                         <div class="label">
-                            <span class="label-text">Content</span>
+                            <span class="label-text">Tag Name</span>
                         </div>
-                        <textarea name="content" id="content" rows="6" class="textarea textarea-bordered @error('content') textarea-error @enderror w-full" required placeholder="Update your comment...">{{ old('content') ?? $comment->content }}</textarea>
+                        <input type="text" name="name" id="name" class="input input-bordered w-full @error('name') input-error @enderror" value="{{ old('name', $tag->name) }}" required>
                         <div class="label">
-                            @error('content')
+                            @error('name')
                                 <span class="label-text-alt text-error">{{ $message }}</span>
                             @enderror
                         </div>
                     </label>
-                    <button type="submit" class="btn btn-primary mt-4">Update Comment</button>
+                    <button type="submit" class="btn btn-warning w-full">Update Tag</button>
                 </form>
             </div>
         </div>

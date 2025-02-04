@@ -11,7 +11,7 @@ class CommentController extends Controller
 {
     public function index()
     {
-        $comments = Comment::with(['user', 'post'])->get(); // Eager load user and post relationships
+        $comments = Comment::with(['user', 'post'])->paginate(10); // Eager load user and post relationships
         return view('comments.index', compact('comments'));
     }
 
@@ -20,22 +20,25 @@ class CommentController extends Controller
         $posts = Post::all(); // Get all posts for dropdown selection
         return view('comments.create', compact('posts'));
     }
+
     public function store(Request $request)
     {
         $validated = $request->validate([
             'body' => 'required|string|max:255',
             'post_id' => 'required|exists:posts,id',
         ]);
+
         Comment::create([
             'body' => $validated['body'],
             'post_id' => $validated['post_id'],
             'user_id' => Auth::id(),
         ]);
+
         return redirect()->route('comments.index')->with('success', 'Comment added successfully.');
     }
+
     public function show(Comment $comment)
     {
-
         return view('comments.show', compact('comment'));
     }
 
@@ -51,7 +54,9 @@ class CommentController extends Controller
             'body' => 'required|string|max:255',
             'post_id' => 'required|exists:posts,id',
         ]);
+
         $comment->update($validated);
+
         return redirect()->route('comments.index')->with('success', 'Comment updated successfully.');
     }
 
